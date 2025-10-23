@@ -1,0 +1,319 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     11290,        309]
+NotebookOptionsPosition[     10247,        281]
+NotebookOutlinePosition[     10642,        297]
+CellTagsIndexPosition[     10599,        294]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Computing QNMs using continued fraction method ", "Title",
+ CellChangeTimes->{{3.970115313780265*^9, 
+  3.97011534319707*^9}},ExpressionUUID->"55754d9f-8891-48bb-95a6-\
+cef3564ff646"],
+
+Cell[CellGroupData[{
+
+Cell["Leaver\[CloseCurlyQuote]s method ", "Section",
+ CellChangeTimes->{{3.970115350758891*^9, 3.9701153670991993`*^9}, {
+  3.970115564549059*^9, 
+  3.970115566145808*^9}},ExpressionUUID->"208bcef3-0c24-41de-b4c7-\
+0470d2462504"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"RootFinder", "[", 
+    RowBox[{"omega_", ",", "l_Integer", ",", "s_Integer", ",", "max_"}], 
+    "]"}], ":=", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "n", ",", "alpha", ",", "beta", ",", "gamma", ",", "S", ",", "RR"}], 
+      "}"}], ",", " ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"alpha", "[", "n_", "]"}], ":=", 
+       RowBox[{
+        RowBox[{"n", "^", "2"}], "+", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"2", "-", 
+           RowBox[{"2", " ", "I", " ", "omega"}]}], ")"}], " ", "n"}], "+", 
+        "1", "-", 
+        RowBox[{"2", " ", "I", " ", "omega"}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"beta", "[", "n_", "]"}], ":=", 
+       RowBox[{"-", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"2", 
+           RowBox[{"n", "^", "2"}]}], " ", "+", " ", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"2", "-", 
+             RowBox[{"8", "I", " ", "\[Omega]"}]}], ")"}], "n"}], "-", 
+          RowBox[{"8", " ", 
+           RowBox[{"\[Omega]", "^", "2"}]}], "-", 
+          RowBox[{"4", "I", " ", "\[Omega]"}], "+", 
+          RowBox[{"l", 
+           RowBox[{"(", 
+            RowBox[{"l", "+", "1"}], ")"}]}], "+", "1", "-", 
+          RowBox[{"s", "^", "2"}]}], ")"}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"gamma", "[", "n_", "]"}], ":=", 
+       RowBox[{
+        RowBox[{"n", "^", "2"}], "-", 
+        RowBox[{"4", " ", "I", " ", "omega", " ", "n"}], "-", 
+        RowBox[{"4", " ", 
+         RowBox[{"omega", "^", "2"}]}], "-", 
+        RowBox[{"s", "^", "2"}]}]}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"S", "[", "max", "]"}], "=", 
+       RowBox[{
+        RowBox[{"gamma", "[", "max", "]"}], "/", 
+        RowBox[{"beta", "[", "max", "]"}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"(*", 
+       RowBox[{
+        RowBox[{
+        "Calculate", " ", "the", " ", "continued", " ", "fraction", " ", "by",
+          " ", "iterating", " ", "backward", " ", "from", " ", "n"}], "=", 
+        RowBox[{"MAX", "-", 
+         RowBox[{"1", " ", "to", " ", "0"}]}]}], "*)"}], 
+      "\[IndentingNewLine]", 
+      RowBox[{"For", "[", 
+       RowBox[{
+        RowBox[{"n", "=", 
+         RowBox[{"max", "-", "1"}]}], ",", 
+        RowBox[{"n", ">=", "0"}], ",", 
+        RowBox[{"n", "--"}], ",", 
+        RowBox[{
+         RowBox[{"S", "[", "n", "]"}], "=", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"gamma", "[", 
+            RowBox[{"n", "+", "1"}], "]"}], "/", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"beta", "[", 
+              RowBox[{"n", "+", "1"}], "]"}], "-", 
+             RowBox[{
+              RowBox[{"alpha", "[", 
+               RowBox[{"n", "+", "1"}], "]"}], " ", 
+              RowBox[{"S", "[", 
+               RowBox[{"n", "+", "1"}], "]"}]}]}], ")"}]}], "+", 
+          RowBox[{"10", "^", 
+           RowBox[{"-", "8"}]}]}]}]}], "]"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"(*", 
+       RowBox[{
+       "RR", " ", "is", " ", "the", " ", "final", " ", "function", " ", 
+        "value", " ", 
+        RowBox[{"(", 
+         RowBox[{"C_", "0"}], ")"}], " ", "that", " ", "we", " ", "want", " ",
+         "to", " ", "be", " ", 
+        RowBox[{"zero", "."}]}], "*)"}], 
+      RowBox[{"RR", "=", 
+       RowBox[{
+        RowBox[{"beta", "[", "0", "]"}], "-", 
+        RowBox[{
+         RowBox[{"alpha", "[", "0", "]"}], " ", 
+         RowBox[{"S", "[", "0", "]"}]}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Return", "[", "RR", "]"}]}]}], "]"}]}], "\n", 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"--", 
+      RowBox[{"-", "How"}]}], " ", "to", " ", "Use", " ", "the", " ", 
+     "Merged", " ", 
+     RowBox[{"Function", "--"}]}], "-"}], "*)"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Clear", "[", "\[Omega]", "]"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"lval", "=", "2"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"sval", "=", "2"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"maxval", "=", "50000"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"omegaGuess", "=", 
+    RowBox[{"0.41", "-", 
+     RowBox[{"1.89", "I"}]}]}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Print", "[", 
+    RowBox[{
+    "\"\<Finding QNM for l=\>\"", ",", "lval", ",", "\"\<, s=\>\"", ",", 
+     "sval", ",", "\"\< with guess: \>\"", ",", "omegaGuess"}], "]"}], ";"}], 
+  "\n", "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+   "Use", " ", "FindRoot", " ", "to", " ", "find", " ", "the", " ", "complex",
+     " ", "value", " ", "of", " ", "\[Omega]", " ", "that", " ", "makes", " ", 
+    RowBox[{"RootFinder", "[", "...", "]"}], " ", "equal", " ", "to", " ", 
+    "0."}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"sol", "=", 
+    RowBox[{"FindRoot", "[", 
+     RowBox[{
+      RowBox[{"RootFinder", "[", 
+       RowBox[{"\[Omega]", ",", "lval", ",", "sval", ",", "maxval"}], "]"}], 
+      ",", 
+      RowBox[{"{", 
+       RowBox[{"\[Omega]", ",", "omegaGuess"}], "}"}], ",", 
+      RowBox[{"MaxIterations", "->", "100000"}]}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\n", 
+ RowBox[{
+  RowBox[{
+  "Print", "[", "\"\<-------------------------------------\>\"", "]"}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Print", "[", 
+   RowBox[{"Style", "[", 
+    RowBox[{
+     RowBox[{"\"\<Found QNM: \[Omega] = \>\"", "<>", 
+      RowBox[{"ToString", "[", 
+       RowBox[{"N", "[", 
+        RowBox[{
+         RowBox[{"\[Omega]", "/.", " ", "sol"}], ",", "15"}], "]"}], "]"}]}], 
+     ",", "Bold", ",", "12"}], "]"}], "]"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.970115957813425*^9, 3.970115957816977*^9}, {
+   3.970116008477809*^9, 3.9701160100835953`*^9}, {3.970116069512374*^9, 
+   3.970116127685583*^9}, {3.970116158408307*^9, 3.970116347072657*^9}, {
+   3.970116449455832*^9, 3.9701165018761597`*^9}, {3.970116549010428*^9, 
+   3.970116554615471*^9}, {3.970118412109764*^9, 3.9701184142909527`*^9}, {
+   3.970118454472958*^9, 3.970118553878817*^9}, 3.97011863933148*^9, 
+   3.970118684245332*^9, {3.970189854126833*^9, 3.970189861079278*^9}, 
+   3.9701900210372*^9, {3.970190143743185*^9, 3.970190177219431*^9}, {
+   3.970190344103128*^9, 3.97019036617036*^9}, {3.9701903972816763`*^9, 
+   3.970190419593557*^9}, {3.970190559337037*^9, 3.9701905970888147`*^9}, {
+   3.970190681868371*^9, 3.9701906831837*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"5b93e735-30cd-4931-b258-50af1d7fa032"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   RowBox[{"\<\"Finding QNM for l=\"\>", "\[InvisibleSpace]", "2", 
+    "\[InvisibleSpace]", "\<\", s=\"\>", "\[InvisibleSpace]", "2", 
+    "\[InvisibleSpace]", "\<\" with guess: \"\>", "\[InvisibleSpace]", 
+    "0.41`"}], "\[VeryThinSpace]", "-", 
+   RowBox[{"1.89`", " ", "\[ImaginaryI]"}]}],
+  SequenceForm["Finding QNM for l=", 2, ", s=", 2, " with guess: ", 
+   Complex[0.41, -1.89]],
+  Editable->False]], "Print",
+ CellChangeTimes->{{3.970116193467046*^9, 3.970116347832142*^9}, {
+   3.970116455059391*^9, 3.970116503318728*^9}, 3.970116555148185*^9, {
+   3.970118458378068*^9, 3.97011848138482*^9}, 3.9701185544985743`*^9, 
+   3.970118641807391*^9, 3.9701187302987833`*^9, 3.9701900225923243`*^9, {
+   3.970190150747655*^9, 3.970190177917652*^9}, {3.970190359969981*^9, 
+   3.97019036689277*^9}, {3.9701904003792553`*^9, 3.9701904204309187`*^9}, {
+   3.970190590842967*^9, 3.9701905978523808`*^9}, 3.970190684194056*^9, 
+   3.9701908293944683`*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"e7d4b26b-4ea3-4787-ac10-460e1844dd6c"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"sol", "=", 
+   RowBox[{"FindRoot", "[", 
+    RowBox[{
+     RowBox[{"RootFinderDo", "[", 
+      RowBox[{"\[Omega]", ",", "lval", ",", "sval", ",", "maxval"}], "]"}], 
+     ",", 
+     RowBox[{"{", 
+      RowBox[{"\[Omega]", ",", "omegaGuess"}], "}"}], ",", 
+     RowBox[{"MaxIterations", "->", "100000"}]}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.970118627692586*^9, 3.970118627698901*^9}, 
+   3.970118777350954*^9, 3.970190074154591*^9},
+ CellLabel->
+  "In[140]:=",ExpressionUUID->"3356063b-e046-4858-afa0-e2c20e5705f4"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Print", "[", 
+   RowBox[{"Style", "[", 
+    RowBox[{
+     RowBox[{"\"\<Found QNM: \[Omega] = \>\"", "<>", 
+      RowBox[{"ToString", "[", 
+       RowBox[{"N", "[", 
+        RowBox[{
+         RowBox[{"\[Omega]", "/.", " ", "sol"}], ",", "15"}], "]"}], "]"}]}], 
+     ",", "Bold", ",", "12"}], "]"}], "]"}], ";"}]], "Input",
+ CellLabel->
+  "In[141]:=",ExpressionUUID->"b7217c08-7102-4a72-afd7-513aa014b590"],
+
+Cell[BoxData[
+ StyleBox["\<\"Found QNM: \[Omega] = 0.415029 - 1.89369 I\"\>",
+  StripOnInput->False,
+  FontSize->12,
+  FontWeight->Bold]], "Print",
+ CellChangeTimes->{3.970118844917507*^9, 3.970190129767762*^9},
+ CellLabel->
+  "During evaluation of \
+In[141]:=",ExpressionUUID->"107dc2ba-4445-41be-a4ec-7b029e561728"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{733, 829},
+WindowMargins->{{33, Automatic}, {1, Automatic}},
+FrontEndVersion->"13.0 for Mac OS X ARM (64-bit) (December 2, 2021)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"a0db0814-00a1-46b8-8ca8-950b64140836"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 189, 3, 160, "Title",ExpressionUUID->"55754d9f-8891-48bb-95a6-cef3564ff646"],
+Cell[CellGroupData[{
+Cell[794, 29, 229, 4, 67, "Section",ExpressionUUID->"208bcef3-0c24-41de-b4c7-0470d2462504"],
+Cell[CellGroupData[{
+Cell[1048, 37, 6689, 173, 724, "Input",ExpressionUUID->"5b93e735-30cd-4931-b258-50af1d7fa032"],
+Cell[7740, 212, 1104, 21, 24, "Print",ExpressionUUID->"e7d4b26b-4ea3-4787-ac10-460e1844dd6c"]
+}, Open  ]],
+Cell[8859, 236, 563, 14, 52, "Input",ExpressionUUID->"3356063b-e046-4858-afa0-e2c20e5705f4"],
+Cell[CellGroupData[{
+Cell[9447, 254, 440, 12, 30, "Input",ExpressionUUID->"b7217c08-7102-4a72-afd7-513aa014b590"],
+Cell[9890, 268, 317, 8, 24, "Print",ExpressionUUID->"107dc2ba-4445-41be-a4ec-7b029e561728"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

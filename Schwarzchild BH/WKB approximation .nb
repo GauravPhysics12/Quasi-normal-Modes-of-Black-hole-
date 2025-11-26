@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     63798,       1794]
+NotebookDataLength[     63715,       1793]
 NotebookOptionsPosition[     56548,       1675]
-NotebookOutlinePosition[     57519,       1704]
-CellTagsIndexPosition[     57476,       1701]
+NotebookOutlinePosition[     57436,       1703]
+CellTagsIndexPosition[     57393,       1700]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -1674,7 +1674,7 @@ dd1065db0623"]
 }, Open  ]]
 },
 WindowSize->{808, 727},
-WindowMargins->{{4, Automatic}, {Automatic, 4}},
+WindowMargins->{{4, Automatic}, {Automatic, 9}},
 SpellingDictionaries->{"CorrectWords"->{
  "lol", "Ey", "dx", "dt", "branes", "Berti", "Cardoso", "Starinets", "qc"}},
 FrontEndVersion->"13.0 for Mac OS X ARM (64-bit) (December 2, 2021)",
@@ -1686,10 +1686,9 @@ StyleDefinitions->Notebook[{
       Cell[
        BoxData[""], "Input", 
        CellChangeTimes -> {{3.970874760694929*^9, 3.970874797480132*^9}}]}, 
-     Open]]}, WindowSize -> {808, 727}, 
-  WindowMargins -> {{305, Automatic}, {Automatic, 42}}, Visible -> False, 
-  FrontEndVersion -> "13.0 for Mac OS X ARM (64-bit) (December 2, 2021)", 
-  StyleDefinitions -> "PrivateStylesheetFormatting.nb"],
+     Open]]}, Visible -> False, FrontEndVersion -> 
+  "13.0 for Mac OS X ARM (64-bit) (December 2, 2021)", StyleDefinitions -> 
+  "PrivateStylesheetFormatting.nb"],
 ExpressionUUID->"d1d881d0-e145-41ab-859b-edca7a545c60"
 ]
 (* End of Notebook Content *)
@@ -1799,6 +1798,4 @@ Cell[56125, 1665, 395, 6, 53, "Item",ExpressionUUID->"af78f11a-8f5a-4be3-bf9f-dd
 }
 ]
 *)
-
-(* End of internal cache information *)
 
